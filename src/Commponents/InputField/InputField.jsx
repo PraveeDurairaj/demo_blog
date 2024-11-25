@@ -8,8 +8,8 @@ const InputField = ({
   placeholder,
   value,
   onChange,
-  required = false,
-  className = '',
+  required ,
+  className ,
   textarea
 }) => {
   return (
@@ -25,14 +25,15 @@ const InputField = ({
       {
         textarea ?
           <textarea 
-          id={id}
-          name={name}
-          value={value}
-          onChange={onChange}
-          placeholder={placeholder}
-          required={required}
+          id={id && id} 
+          name={name && name}
+          onChange={onChange && onChange}
+          placeholder={placeholder && placeholder}
+          required={required && required}
+          defaultValue={value && value}
           className={`w-full p-3 border border-black rounded-sm focus:outline-none focus:ring-1 focus:ring-black focus:border-black`}
-          > </textarea>
+          > 
+          </textarea>
           :
           <input
             id={id}
