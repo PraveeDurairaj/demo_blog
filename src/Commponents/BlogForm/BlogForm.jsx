@@ -50,7 +50,7 @@ export default function BlogForm() {
                         value={formData.title}
                         onChange={handleChange}
                         required={true}
-                        textarea
+                        textarea={true}
                     />
                     <InputField
                         id="subTitle"
@@ -61,7 +61,7 @@ export default function BlogForm() {
                         value={formData.subtitle}
                         onChange={handleChange}
                         required={true}
-                        textarea
+                        textarea={true}
                     />
                     <InputField
                         id="readTime"
