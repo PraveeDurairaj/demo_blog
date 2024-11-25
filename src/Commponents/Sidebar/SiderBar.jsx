@@ -11,7 +11,7 @@ const Sidebar = () => {
     )
    
 }
-const currentpath = window?.location?.pathname ;
+// const currentpath = window?.location?.pathname ;
   return (
     <div className="md:w-64 bg-black text-white shadow-md  flex flex-col p-4  sm:min-h-[50px] md:h-full sm:w-full sm:absolute  md:static sm:rounded-s-[0px] md:rounded-e-[30px]">
       <div className=" sm:flex sm:justify-between md:hidden">
@@ -23,7 +23,7 @@ const currentpath = window?.location?.pathname ;
         <Link href="/" className="flex px-[15px] py-[5px] rounded-[5px] bg-white/30 backdrop-blur-lg mb-2">
           <span>Dashboard</span>
         </Link>
-        <Link href="/createBlog" className={`flex px-[15px] py-[5px] rounded-[5px] bg-white/30 backdrop-blur-lg mb-2 ${currentpath === '/createBlog' && '!bg-white !text-black !shadow-xl'}`}>
+        <Link href="/createBlog" className={"flex px-[15px] py-[5px] rounded-[5px] bg-white/30 backdrop-blur-lg mb-2 "}>
           <span>Manage Blog</span>
         </Link>
         <Link href="/settings" className="flex px-[15px] py-[5px] rounded-[5px] bg-white/30 backdrop-blur-lg mb-2">
