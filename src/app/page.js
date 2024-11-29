@@ -1,13 +1,16 @@
 'use client' ;
 import React from 'react';
-import BlogCard from '@/Commponents/BlogCard/BlogCard';
-import Hero from '@/Commponents/Hero/Hero';
+import Link from 'next/link';
+// components
+import BlogCard from './Commponents/BlogCard/BlogCard';
+import Hero from '@/app/Commponents/Hero/Hero';
+// hook
 import { useFetchCollection } from '@/hooks/useFetchCollection';
 
+
 const page = () => {
-
   const blogdata= useFetchCollection('blogData')
-
+  
   return (
     <>
     <div className='my-[50px]'></div>
@@ -17,11 +20,14 @@ const page = () => {
       {
         blogdata?.map((cardData,index)=>{
           return(
-            <BlogCard data={cardData} key={index}/>
+            <Link href={`/blog/${cardData?.blogTitle}`} key={index}>
+               <BlogCard data={cardData} />
+              </Link>
+           
           )
         })
       }
-    </div>
+    </div>    
     <div className='my-[50px]'></div>
     </>
   

@@ -1,5 +1,5 @@
 
-import Sidebar from '@/Commponents/Sidebar/SiderBar';
+import Sidebar from '@/app/Commponents/Sidebar/SiderBar';
 
 export default function Admin({children}) {
   return (

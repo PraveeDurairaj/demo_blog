@@ -4,11 +4,12 @@ import { db } from '../firebase/config';
 
 export const useFetchCollection = (fbCollection) => {
     const [documents, setDocuments] = useState(null);
+
     useEffect(() => {
-        const userCollection = collection(db, fbCollection);
-        const orderDataQuery = query(userCollection, orderBy("blogCreatedDate", "desc"))
+        const userCollection = collection(db, fbCollection); // get collection from firestore
+        const orderDataQuery = query(userCollection, orderBy("blogCreatedDate", "desc")) //order the data bases on the created date
         const unsub = onSnapshot(orderDataQuery, (snapshot) => {
-            let res = snapshot.docs.map((docs) => docs.data())
+            let res = snapshot.docs.map((docs) => docs.data())//docs.data() this isthe firebases method is return the actual data
             setDocuments(res)
         })
         return () => unsub()
