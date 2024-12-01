@@ -1,27 +1,31 @@
 import React from 'react';
 import Image from 'next/image';
-// import hero from '../../../public/round.png';
+import hero from '../../../../public/round.png';
+import { Button } from '@material-tailwind/react';
 
 const Hero = () => {
     return (
-            <div className="relative box container flex justify-center items-center bg-gradient-to-r from-violet-200 to-pink-200
-        py-20  min-h-[550px] rounded-xl">
-                <div className="  mx-auto text-center">
-                    <h1 className="text-3xl sm:text-5xl font-semibold mb-4">
-                        Welcome to Our Blog
-                    </h1>
-                    <p className="text-lg sm:text-xl mb-6">
-                        Discover insightful articles and inspiring stories across various topics.
-                    </p>
-                    <a className="inline-block bg-white text-gray-800 py-3 px-6 rounded-full font-semibold text-md hover:bg-gray-200 transition">
-                        Explore Our Blog
-                    </a>
-{/*                     
-                    <Image src={hero} className='heroImg' alt='img'></Image> */}
-                    {/* <div id="earth"></div> */}
-                </div>
-
+        <div className="relative group container flex justify-center items-center overflow-hidden max-h-[500px] bg-[#1a0b3a] text-white
+         min-h-[550px] rounded-xl gr">
+            <div className="  mx-auto text-center">
+                <h1 className="text-[40px]  font-[500] mb-4">
+                    Welcome to Our Blog
+                </h1>
+                <p className="text-[18px] mb-6 max-w-[800px]">
+                    Discover articles that spark your curiosity, expand your knowledge, and keep you inspired. Whether you're interested in [your niche, e.g., lifestyle, tech, travel], we've got something for everyone!
+                </p>
+                <Button className="rounded-full border border-white bg-transparent shadow-xl">Explore our blog</Button>
+                <Image src={hero} className=' sm:hidden md:hidden lg:block heroImg absolute left-[50px]' alt='img'></Image>
             </div>
+            <div className='sm:hidden md:hidden lg:block p-5 rounded-xl text-[16px] absolute max-w-[300px] right-[20px] top-[50px] bg-white bg-opacity-[0.1] transition-all shadow-xl
+             backdrop-blur-[2px] hover:bg-white hover:text-black hover:top-[45px] '>
+                Improved Knowledge and Learning Deepen your understanding of various topics through accessible content.
+            </div>
+            <div className='sm:hidden md:hidden lg:block p-5 rounded-xl text-[16px] absolute max-w-[300px] left-[20px] bottom-[70px] bg-white bg-opacity-[0.1] transition-all shadow-xl
+             backdrop-blur-[2px] hover:bg-white hover:text-black hover:bottom-[80px]'>
+                Free and Easy Access Enjoy a wide range of content for free, accessible on any device.
+            </div>
+        </div>
     )
 }
 
