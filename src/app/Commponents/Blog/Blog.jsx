@@ -13,7 +13,7 @@ const Blog = () => {
         blogdata?.map((cardData,index)=>{
           return(
             <Link href={`/blog/${cardData?.id}`} key={index}>
-               <BlogCard data={cardData} fetch={blogdata} />
+               <BlogCard data={cardData} fetch={blogdata}  />
               </Link>
            
           )

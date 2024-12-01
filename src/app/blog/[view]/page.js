@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import { useParams } from "next/navigation";
 // components
-import BlogCard from '@/app/Commponents/BlogCard/BlogCard';
+import ViewBlog from '@/app/Commponents/ViewBlog/ViewBlog';
 // hook
 import { useFetchDocs } from '@/hooks/useFetchDocs';
 
@@ -19,7 +19,7 @@ const page = () => {
 
   return (
     <div>
-      <BlogCard data={blog && blog } fetch={blog && true}/>
+      <ViewBlog data={blog && blog}/>
     </div>
   )
 }

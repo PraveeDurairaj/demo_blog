@@ -1,11 +1,10 @@
 'use client'
-import React, { useState } from 'react';
+import React from 'react';
 import moment from 'moment';
 
 import {
   Card,
   CardBody,
-  CardFooter,
   Typography,
   Button,
 } from "@material-tailwind/react";
@@ -18,8 +17,8 @@ const BlogCard = ({ data, fetch }) => {
   const date = moment(createdata && createdata).format('YYYY-MM-DD'); // "2024-11-22"
   return (
     <>
-      {fetch ? <Card className={"w-full h-auto"}>
-        <CardBody>
+      {fetch ? <Card className={"w-full h-auto shadow-lg" }>
+        <CardBody className='p-4'>
           <Typography variant="h5" color="blue-gray" className="mb-2">
             {data?.blogTitle}
           </Typography>
@@ -28,15 +27,11 @@ const BlogCard = ({ data, fetch }) => {
           </Typography>
 
           <div className='flex  justify-between'>
-            <Typography>
-              {data?.blogReadTime} read
-            </Typography>
-            <span className="mr-4">{date}</span>
+            <Typography>{data?.blogReadTime} min read</Typography>
+            <Typography className='bg-gray-200 rounded-full px-[10px] py-[4px] text-[14px]'>{date}</Typography>
           </div>
         </CardBody>
-        <CardFooter className="pt-0">
-          <Button >Read More</Button>
-        </CardFooter>
+          <Button className='rounded-b-xl rounded-t-[0px]' >Read More</Button>
       </Card> :
         <div className='animate-pulse  rounded-lg bg-gray-300 h-[250px]'>
 
