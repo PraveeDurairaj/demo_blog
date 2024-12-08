@@ -5,9 +5,65 @@ import InputField from '../InputField/InputField';
 // helper 
 import { useAddDos } from '@/hooks/useAddDos';
 
+import { Button } from '@material-tailwind/react';
 
-export default function BlogForm() {
-    // import firebase common hook
+
+const Form = ({ formIndex, handleRemove, formData, handleInputChange }) => {
+    return (
+        <div className="border p-4 rounded-[5px] mb-5  bg-white relative gap-5 sm:grid grid-cols-1 md:grid-cols-2">
+
+            {
+                formIndex >= 1 && <button
+                    onClick={() => handleRemove(formData.id)}
+                    className="absolute top-[-12px] right-[-8px] rounded-full w-7 h-7 p-[0px] bg-black text-white text-[12px]"
+                >
+                    X
+                </button>
+            }
+
+            <textarea
+                type="text"
+                name={`subHeader_${formIndex}`}
+                value={formData.subHeader}
+                onChange={(e) => handleInputChange(formIndex, e)}
+                placeholder="Enter sub header "
+                className={`w-full p-3 border border-black rounded-sm focus:outline-none focus:ring-1 focus:ring-black focus:border-black`}
+            />
+            <textarea
+                type="text"
+                name={`para1_${formIndex}`}
+                value={formData.para1}
+                onChange={(e) => handleInputChange(formIndex, e)}
+                placeholder="Enter description 1"
+                className={`w-full p-3 border border-black rounded-sm focus:outline-none focus:ring-1 focus:ring-black focus:border-black`}
+            />
+            <textarea
+                type="text"
+                name={`para2_${formIndex}`}
+                value={formData.para2}
+                onChange={(e) => handleInputChange(formIndex, e)}
+                placeholder="Enter description 2"
+                className={`w-full p-3 border border-black rounded-sm focus:outline-none focus:ring-1 focus:ring-black focus:border-black`}
+            />
+            <textarea
+                type="text"
+                name={`para3_${formIndex}`}
+                value={formData.para3}
+                onChange={(e) => handleInputChange(formIndex, e)}
+                placeholder="Enter description 3"
+                className={`w-full p-3 border border-black rounded-sm focus:outline-none focus:ring-1 focus:ring-black focus:border-black`}
+            />
+        </div>
+    );
+};
+
+const BlogForm = () => {
+
+    const [forms, setForms] = useState([
+        { id: Date.now(), subHeader: "", para1: "", para2: "", para3: "" },
+    ]);
+    const [counter, setCounter] = useState(1);
+
     const { addBlogData, error } = useAddDos('blogData')
     const [formData, setFormData] = useState({
         title: '',
@@ -22,6 +78,25 @@ export default function BlogForm() {
             [name]: value,
         });
     };
+    const handleAddForm = () => {
+        setForms([
+            ...forms,
+            { id: Date.now(), subHeader: "", para1: "", para2: "", para3: "" },
+        ]);
+        setCounter(counter + 1);
+        console.log(forms)
+    };
+
+
+    const handleRemoveForm = (id) => {
+        setForms(forms.filter((form) => form.id !== id));
+    };
+
+    const handleInputChange = (index, event) => {
+        const newForms = [...forms];
+        newForms[index][event.target.name.split('_')[0]] = event.target.value;
+        setForms(newForms);
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -30,9 +105,19 @@ export default function BlogForm() {
                 blogTitle: formData?.title,
                 blogSubTitle: formData?.subtitle,
                 blogId: formData?.readTime + 2,
-                blogReadTime: formData?.readTime
+                blogReadTime: formData?.readTime,
+                blogContent:{...forms}
             }
         )
+        setFormData({
+            title: "",
+            subtitle: "",
+            readTime: "",
+        })
+
+        setForms([{ id: Date.now(), subHeader: "", para1: "", para2: "", para3: "" }])
+        setCounter(1)
+        console.log(formData,'sucess')
     };
 
     return (
@@ -72,6 +157,25 @@ export default function BlogForm() {
                         required={true}
                     />
                 </div>
+                <h1 className="text-2xl font-bold mb-6">Content</h1>
+                <div className="w-full mx-auto mb-5 bg-gray-200 p-5  shadow-lg rounded-lg">
+                    {forms?.map((form, index) => (
+                        <Form
+                            key={index}
+                            formIndex={index}
+                            formData={form}
+                            handleRemove={handleRemoveForm}
+                            handleInputChange={handleInputChange}
+                        />
+                    ))}
+                    <Button
+                        onClick={handleAddForm}
+                        disabled={forms.length == 5 ? true : false}
+                    >
+                        Add
+                    </Button>
+                    {forms.length == 5 && <p className="text-red-600">you reach maximum limeted content </p>}
+                </div>
                 <div className='flex justify-end'>
                     <button
                         type="submit"
@@ -89,4 +193,5 @@ export default function BlogForm() {
         </div>
     );
 }
+export default BlogForm
 

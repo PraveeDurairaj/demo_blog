@@ -11,13 +11,13 @@ import {
 
 
 
-const BlogCard = ({ data, fetch }) => {
+const BlogCard = ({ data}) => {
 
   const createdata = data?.blogCreatedDate.toDate()
-  const date = moment(createdata && createdata).format('YYYY-MM-DD'); // "2024-11-22"
+  const date = moment(createdata && createdata).format('YYYY-MM-DD');
   return (
     <>
-      {fetch ? <Card className={"w-full h-auto shadow-lg" }>
+      <Card className={"w-full h-auto shadow-lg"}>
         <CardBody className='p-4'>
           <Typography variant="h5" color="blue-gray" className="mb-2">
             {data?.blogTitle}
@@ -31,14 +31,8 @@ const BlogCard = ({ data, fetch }) => {
             <Typography className='bg-gray-200 rounded-full px-[10px] py-[4px] text-[14px]'>{date}</Typography>
           </div>
         </CardBody>
-          <Button className='rounded-b-xl rounded-t-[0px]' >Read More</Button>
-      </Card> :
-        <div className='animate-pulse  rounded-lg bg-gray-300 h-[250px]'>
-
-        </div>
-      }
-
-
+        <Button className='rounded-b-xl rounded-t-[0px]' >Read More</Button>
+      </Card>
     </>
 
 

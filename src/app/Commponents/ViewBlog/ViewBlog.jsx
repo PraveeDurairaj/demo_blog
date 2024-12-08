@@ -1,14 +1,40 @@
 import React from 'react';
 
-const ViewBlog = ({data}) => {
+const ViewBlog = ({ data }) => {
+
+  const full = [data?.blogContent[0], data?.blogContent[1],data?.blogContent[2],data?.blogContent[3],
+  data?.blogContent[4],data?.blogContent[5]]
+
   return (
-    <div className='bg-black flex sm:px-[20px] sm:py-[50px] md:px-[50px] md:py-[80px]'>
-      <div className="container relative before:content-[''] before:absolute
-       before:w-[5px] before:h-full before:bg-[#FF0000] before:rounded-[20px] before:left-[0]">
-        <h1 className='text-[30px] text-white mb-3'>{data?.blogTitle}</h1>
-        <p className='text-[18px] text-gray-500'>{data?.blogSubTitle}</p>
+    <>
+      <div className='bg-black flex sm:px-[20px] sm:py-[50px] md:px-[50px] md:py-[80px]'>
+        {
+          data ? <div className="container relative before:content-[''] before:absolute
+          before:w-[5px] before:h-full before:bg-[#FF0000] before:rounded-[20px] before:left-[0]">
+            <h1 className='text-[30px] text-white mb-3'>{data?.blogTitle}</h1>
+            <p className='text-[18px] text-gray-500'>{data?.blogSubTitle}</p>
+          </div> : <div className='w-full'>
+            <div className='min-h-[35px] w-full animate-pulse bg-gray-300 rounded-full mb-3' ></div>
+            <p className='min-h-[20px] w-2/3 animate-pulse bg-gray-300 rounded-full'></p>
+          </div>
+        }
       </div>
-    </div>
+      <div className='container sm:px-[20px] sm:py-[50px] md:px-[50px] md:pt-[30px] md:pb-[80px]'>
+        {
+          full.map((content, index) => {
+            return (
+              <div className='mb-5' key={index}>
+                <h2 className='text-[24px] mb-2'>{content?.subHeader}</h2>
+                {content?.para1 && <p className='text-[16px] mb-1'>{content?.para1}</p>}
+                {content?.para2 && <p className='text-[16px] mb-1'>{content?.para2}</p>}
+                {content?.para3 && <p className='text-[16px] mb-1'>{content?.para3}</p>}
+              </div>
+            )
+          })
+        }
+      </div>
+    </>
+
   )
 }
 
