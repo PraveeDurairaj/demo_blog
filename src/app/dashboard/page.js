@@ -1,47 +1,28 @@
 'use client';
 import React from 'react';
 import { Card, Typography } from "@material-tailwind/react";
+import { Alert } from "@material-tailwind/react";
+import moment from 'moment';
+import { useFetchCollection } from '@/hooks/useFetchCollection';
+import { useDeleteDos } from '@/hooks/useDeleteDos';
 import Admin from '../admin/page';
 
-const TABLE_HEAD = ["Name", "Job", "Employed", ""];
+const TABLE_HEAD = ["No", "Id", "Created date", "Blog title", "View count", "Action"];
 
-const TABLE_ROWS = [
-    {
-        name: "John Michael",
-        job: "Manager",
-        date: "23/04/18",
-    },
-    {
-        name: "Alexa Liras",
-        job: "Developer",
-        date: "23/04/18",
-    },
-    {
-        name: "Laurent Perrier",
-        job: "Executive",
-        date: "19/09/17",
-    },
-    {
-        name: "Michael Levi",
-        job: "Developer",
-        date: "24/12/08",
-    },
-    {
-        name: "Richard Gran",
-        job: "Manager",
-        date: "04/10/21",
-    },
-];
+
 
 const page = () => {
+    const blogdata = useFetchCollection('blogData');
+    const { deleteBlogData, deleteState } = useDeleteDos('blogData');
+
     return (
         <Admin>
             <Card className="h-full w-full rounded-t-[10px] overflow-x-auto">
-                <table className="w-full min-w-max table-auto text-left">
+                <table className="w-full min-w-[800px] table-auto text-center">
                     <thead>
-                        <tr className=''>
+                        <tr>
                             {TABLE_HEAD.map((head) => (
-                                <th key={head} className="border-b border-blue-gray-100 bg-black p-4">
+                                <th key={head} className="border-b border-blue-gray-100 bg-black p-4 min-w-[150px]">
                                     <Typography
                                         variant="small"
                                         color="blue-gray"
@@ -54,37 +35,58 @@ const page = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {TABLE_ROWS.map(({ name, job, date }, index) => {
-                            const isLast = index === TABLE_ROWS.length - 1;
-                            const classes = isLast ? "p-4" : "p-4 border-b border-blue-gray-50";
-
-                            return (
-                                <tr key={name} className='even:bg-blue-gray-50/50'>
-                                    <td className={classes}>
-                                        <Typography variant="small" color="blue-gray" className="font-normal">
-                                            {name}
-                                        </Typography>
-                                    </td>
-                                    <td className={`${classes} bg-blue-gray-50/50`}>
-                                        <Typography variant="small" color="blue-gray" className="font-normal">
-                                            {job}
-                                        </Typography>
-                                    </td>
-                                    <td className={classes}>
-                                        <Typography variant="small" color="blue-gray" className="font-normal">
-                                            {date}
-                                        </Typography>
-                                    </td>
-                                    <td className={`${classes} bg-blue-gray-50/50`}>
-                                        <Typography as="a" href="#" variant="small" color="blue-gray" className="font-medium">
-                                            Edit
-                                        </Typography>
-                                    </td>
-                                </tr>
-                            );
-                        })}
+                        {
+                            blogdata?.map((data, index) => {
+                                const isLast = index === blogdata?.length - 1;
+                                const classes = isLast ? "p-4" : "p-4 border-b border-blue-gray-50";
+                                const createdata = data?.blogCreatedDate.toDate()
+                                const date = moment(createdata && createdata).format('YYYY-MM-DD');
+                                return (
+                                    <tr key={index} className='even:bg-blue-gray-50/50'>
+                                        <td className={classes}>
+                                            <Typography variant="small" color="blue-gray" className="font-normal">
+                                                {index + 1}
+                                            </Typography>
+                                        </td>
+                                        <td className={`${classes} bg-blue-gray-50/50`}>
+                                            <Typography variant="small" color="blue-gray" className="font-normal">
+                                                {data?.id}
+                                            </Typography>
+                                        </td>
+                                        <td className={`${classes} bg-blue-gray-50/50`}>
+                                            <Typography variant="small" color="blue-gray" className="font-normal">
+                                                {date && date}
+                                            </Typography>
+                                        </td>
+                                        <td className={classes}>
+                                            <Typography variant="small" color="blue-gray" className="font-normal">
+                                                {data?.blogTitle}
+                                            </Typography>
+                                        </td>
+                                        <td className={`${classes} bg-blue-gray-50/50`}>
+                                            <Typography as="a" href="#" variant="small" color="blue-gray" className="font-medium">
+                                                -
+                                            </Typography>
+                                        </td>
+                                        <td className={`${classes} bg-blue-gray-50/50`}>
+                                            <Typography  variant="small" color="red" className="font-medium cursor-pointer"
+                                                onClick={() => deleteBlogData(data?.id)}>
+                                                Delete
+                                            </Typography>
+                                        </td>
+                                    </tr>
+                                )
+                            })
+                        }
                     </tbody>
                 </table>
+
+                {
+                    deleteState &&
+                     <div className="absolute top-3 right-2">
+                        <Alert color="red">blog deleted successfully</Alert>
+                    </div>
+                }
             </Card>
         </Admin>
 
