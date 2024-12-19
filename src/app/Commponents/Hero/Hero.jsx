@@ -5,8 +5,8 @@ import { Button } from '@material-tailwind/react';
 
 const Hero = () => {
     return (
-        <div className="relative group container flex justify-center items-center overflow-hidden max-h-[500px] bg-[#1a0b3a] text-white
-         min-h-[550px] rounded-xl gr">
+        <div className="relative group  flex justify-center items-center overflow-hidden s bg-[#1a0b3a] text-white
+         min-h-[600px] rounded-b-[50px] shadow-xl ">
             <div className="  mx-auto text-center">
                 <h1 className="text-[40px]  font-[500] mb-4">
                     Welcome to Our Blog

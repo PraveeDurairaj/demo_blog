@@ -10,7 +10,7 @@ import { Button } from '@material-tailwind/react';
 
 const Form = ({ formIndex, handleRemove, formData, handleInputChange }) => {
     return (
-        <div className="border p-4 rounded-[5px] mb-5  bg-white relative gap-5 sm:grid grid-cols-1 md:grid-cols-2">
+        <div className="border  rounded-sm mb-5 border-black p-4  bg-white relative gap-5 sm:grid grid-cols-1">
 
             {
                 formIndex >= 1 && <button
@@ -124,7 +124,7 @@ const BlogForm = () => {
         <div className="w-full mx-auto  p-6 bg-white shadow-lg rounded-lg">
             <h1 className="text-2xl font-bold mb-6">Create a Blog</h1>
             <form onSubmit={handleSubmit}>
-                <div className='grid sm:grid-cols-1 md:grid-cols-2 gap-5'>
+                <div className='grid sm:grid-cols-1 gap-5'>
                     <InputField
                         id="title"
                         label="Title"
@@ -158,7 +158,7 @@ const BlogForm = () => {
                     />
                 </div>
                 <h1 className="text-2xl font-bold mb-6">Content</h1>
-                <div className="w-full mx-auto mb-5 bg-gray-200 p-5  shadow-lg rounded-lg">
+                <div className="w-full mx-auto mb-5 shadow-lg ">
                     {forms?.map((form, index) => (
                         <Form
                             key={index}

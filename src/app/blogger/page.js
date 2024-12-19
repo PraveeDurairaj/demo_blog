@@ -6,8 +6,9 @@ import moment from 'moment';
 import { useFetchCollection } from '@/hooks/useFetchCollection';
 import { useDeleteDos } from '@/hooks/useDeleteDos';
 import Admin from '../admin/page';
+import Link from 'next/link';
 
-const TABLE_HEAD = ["No", "Id", "Created date", "Blog title", "View count", "Action"];
+const TABLE_HEAD = ["No", "Id", "Created date", "Blog title", "View count", "Action",'Preview'];
 
 
 
@@ -17,6 +18,12 @@ const page = () => {
 
     return (
         <Admin>
+             {
+                    deleteState &&
+                     <div className="absolute top-3 right-0 z-[120] max-w-[300px]">
+                        <Alert color="red">blog deleted successfully</Alert>
+                    </div>
+                }
             <Card className="h-full w-full rounded-t-[10px] overflow-x-auto">
                 <table className="w-full min-w-[800px] table-auto text-center">
                     <thead>
@@ -74,19 +81,17 @@ const page = () => {
                                                 Delete
                                             </Typography>
                                         </td>
+                                        <td className={`${classes} bg-blue-gray-50/50`}>
+                                            <Link href={`/blog/${data?.id}`}  className="font-medium cursor-pointer text-blue-800" >
+                                                View
+                                            </Link>
+                                        </td>
                                     </tr>
                                 )
                             })
                         }
                     </tbody>
                 </table>
-
-                {
-                    deleteState &&
-                     <div className="absolute top-3 right-2">
-                        <Alert color="red">blog deleted successfully</Alert>
-                    </div>
-                }
             </Card>
         </Admin>
 
