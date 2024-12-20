@@ -30,7 +30,7 @@ console.log(pathname)
         <span className="w-[30px] h-[30px] bg-white rounded-full" onClick={handleClick}></span>
       </div>
       <List className={show ? 'sm:flex flex-col' : 'sm:hidden md:flex' } >
-        <Link href="/dashboard">
+        <Link href="/blogger">
           <ListItem className={`bg-white hover:bg-white 
              text-black ${pathname == '/blogger' && 'bg-black text-white hover:bg-black hover:text-white focus:text-white focus:bg-black active:text-white active:bg-black'}`} >
             <ListItemPrefix>

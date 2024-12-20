@@ -8,7 +8,7 @@ import { useDeleteDos } from '@/hooks/useDeleteDos';
 import Admin from '../admin/page';
 import Link from 'next/link';
 
-const TABLE_HEAD = ["No", "Id", "Created date", "Blog title", "View count", "Action",'Preview'];
+const TABLE_HEAD = ["No", "Id", "Created date", "Blog title", "View count", "Action", 'Preview'];
 
 
 
@@ -18,12 +18,12 @@ const page = () => {
 
     return (
         <Admin>
-             {
-                    deleteState &&
-                     <div className="absolute top-3 right-0 z-[120] max-w-[300px]">
-                        <Alert color="red">blog deleted successfully</Alert>
-                    </div>
-                }
+            {
+                deleteState &&
+                <div className="absolute top-3 right-0 z-[120] max-w-[300px]">
+                    <Alert color="red">blog deleted successfully</Alert>
+                </div>
+            }
             <Card className="h-full w-full rounded-t-[10px] overflow-x-auto">
                 <table className="w-full min-w-[800px] table-auto text-center">
                     <thead>
@@ -42,7 +42,8 @@ const page = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {
+                        {  blogdata ?
+                        
                             blogdata?.map((data, index) => {
                                 const isLast = index === blogdata?.length - 1;
                                 const classes = isLast ? "p-4" : "p-4 border-b border-blue-gray-50";
@@ -89,7 +90,25 @@ const page = () => {
                                     </tr>
                                 )
                             })
-                        }
+                        
+                        : 
+                        
+                            [1, 2, 3, 4, 5, 6].map((data) => {
+                                return (
+                                    <tr className='even:bg-blue-gray-50/50' key={data}>
+                                        {[1, 2, 3, 4, 5, 6, 7].map((data) => {
+                                            return (
+                                                <td className='w-[100px] h-[50px] p-2' key={data}>
+                                                    <p className='animate-pulse bg-gray-300 w-full h-full rounded-sm'></p>
+                                                </td>
+                                            )
+                                        })
+                                        }
+                                    </tr>
+                                )
+                            })
+                        
+                    }
                     </tbody>
                 </table>
             </Card>
