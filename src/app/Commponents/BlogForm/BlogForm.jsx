@@ -1,15 +1,14 @@
 'use client';
 import { useState } from 'react';
-
+import { Button } from '@material-tailwind/react';
 // helper 
 import { useAddDos } from '@/hooks/useAddDos';
 
-import { Button } from '@material-tailwind/react';
 
 
 const Form = ({ formIndex, handleRemove, formData, handleInputChange }) => {
     return (
-        <div className="border  rounded-sm mb-5 border-black p-4  bg-white relative gap-5 sm:grid grid-cols-1">
+        <div className="border  rounded-sm mb-5 border-black p-4   relative gap-5 sm:grid grid-cols-1">
 
             {
                 formIndex >= 1 && <button
@@ -57,13 +56,11 @@ const Form = ({ formIndex, handleRemove, formData, handleInputChange }) => {
 };
 
 const BlogForm = () => {
-
+    const { addBlogData, error } = useAddDos('blogData');
     const [forms, setForms] = useState([
         { id: Date.now(), subHeader: "", para1: "", para2: "", para3: "" },
     ]);
-    const [counter, setCounter] = useState(1);
 
-    const { addBlogData, error } = useAddDos('blogData')
     const [formData, setFormData] = useState({
         title: '',
         subtitle: '',
@@ -82,10 +79,7 @@ const BlogForm = () => {
             ...forms,
             { id: Date.now(), subHeader: "", para1: "", para2: "", para3: "" },
         ]);
-        setCounter(counter + 1);
-        console.log(forms)
     };
-
 
     const handleRemoveForm = (id) => {
         setForms(forms.filter((form) => form.id !== id));
@@ -105,7 +99,7 @@ const BlogForm = () => {
                 blogSubTitle: formData?.subtitle,
                 blogId: formData?.readTime + 2,
                 blogReadTime: formData?.readTime,
-                blogContent: { ...forms }
+                blogContent:[  ...forms ]
             }
         )
 
@@ -116,7 +110,7 @@ const BlogForm = () => {
         })
 
         setForms([{ id: Date.now(), subHeader: "", para1: "", para2: "", para3: "" }])
-        setCounter(1)
+
     };
 
     return (
@@ -187,11 +181,11 @@ const BlogForm = () => {
                         ))}
                         <Button
                             onClick={handleAddForm}
-                            disabled={forms.length == 5 ? true : false}
+                            disabled={forms.length == 7 ? true : false}
                         >
                             Add
                         </Button>
-                        {forms.length == 5 && <p className="text-red-600">you reach maximum limeted content </p>}
+                        {forms.length == 7 && <p className="text-red-600">you reach maximum limeted content </p>}
                     </div>
                     <div className='flex justify-end'>
                         <button
