@@ -2,23 +2,31 @@
 import React, { useEffect } from 'react';
 import { useParams } from "next/navigation";
 // components
-import ViewBlog from '@/app/Commponents/ViewBlog/ViewBlog';
+
 // hook
 import { useFetchDocs } from '@/hooks/useFetchDocs';
+import EditBlog from '@/app/Commponents/EditBlog/EditBlog';
 
 
 
 const page = () => {
   const params = useParams(); 
   const id = params;
+
   const {getBlogData,blog} = useFetchDocs('blogData')
+
   useEffect(()=>{
-    getBlogData(id.view)
+    getBlogData(id.blog)
   },[])
+
+
 
   return (
     <div>
-      <ViewBlog data={blog && blog}/>
+      {
+        blog && <EditBlog blog={blog} id={id.blog}/>
+      }
+      
     </div>
   )
 }
