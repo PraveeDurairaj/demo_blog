@@ -5,6 +5,56 @@ import { useRouter } from 'next/navigation'
 import { useUpdateDoc } from '@/hooks/useUpdateDoc';
 import React from 'react'
 import Admin from '@/app/admin/page';
+
+const Form = ({ formIndex, handleRemove, formData, handleInputChange }) => {
+    return (
+        <div className="border  rounded-sm mb-5 border-black p-4  bg-white relative gap-5 sm:grid grid-cols-1">
+
+            {
+                formIndex >= 1 && <button
+                    onClick={() => handleRemove(formData.id)}
+                    className="absolute top-[-12px] right-[-8px] rounded-full w-7 h-7 p-[0px] bg-black text-white text-[12px]"
+                >
+                    X
+                </button>
+            }
+
+            <textarea
+                type="text"
+                name={`subHeader_${formIndex}`}
+                value={formData.subHeader}
+                onChange={(e) => handleInputChange(formIndex, e)}
+                placeholder="Enter sub header "
+                className={`w-full p-3 border border-black rounded-sm focus:outline-none focus:ring-1 focus:ring-black focus:border-black`}
+            />
+            <textarea
+                type="text"
+                name={`para1_${formIndex}`}
+                value={formData.para1}
+                onChange={(e) => handleInputChange(formIndex, e)}
+                placeholder="Enter description 1"
+                className={`w-full p-3 border border-black rounded-sm focus:outline-none focus:ring-1 focus:ring-black focus:border-black`}
+            />
+            <textarea
+                type="text"
+                name={`para2_${formIndex}`}
+                value={formData.para2}
+                onChange={(e) => handleInputChange(formIndex, e)}
+                placeholder="Enter description 2"
+                className={`w-full p-3 border border-black rounded-sm focus:outline-none focus:ring-1 focus:ring-black focus:border-black`}
+            />
+            <textarea
+                type="text"
+                name={`para3_${formIndex}`}
+                value={formData.para3}
+                onChange={(e) => handleInputChange(formIndex, e)}
+                placeholder="Enter description 3"
+                className={`w-full p-3 border border-black rounded-sm focus:outline-none focus:ring-1 focus:ring-black focus:border-black`}
+            />
+        </div>
+    );
+};
+
 const EditBlog = ({ blog, id }) => {
     const router = useRouter();
     const { updateBlogData, updateState } = useUpdateDoc('blogData');
@@ -13,8 +63,8 @@ const EditBlog = ({ blog, id }) => {
         subtitle: blog?.blogSubTitle,
         readTime: blog?.blogReadTime
     });
-    const [forms, setForms] = useState(blog?.blogContent);
-
+    const [forms, setForms] = useState(blog.blogContent);
+  
     const handleAddForm = () => {
         setForms([
             ...forms,
@@ -49,58 +99,12 @@ const EditBlog = ({ blog, id }) => {
                 blogSubTitle: formData?.subtitle,
                 blogId: formData?.readTime + 2,
                 blogReadTime: formData?.readTime,
+                blogContent:[  ...forms ]
             }
         )
         setTimeout(() => { router.back() }, 3000)
     }
-    const Form = ({ formIndex, handleRemove, formData, handleInputChange }) => {
-        return (
-            <div className="border  rounded-sm mb-5 border-black p-4  bg-white relative gap-5 sm:grid grid-cols-1">
-
-                {
-                    formIndex >= 1 && <button
-                        onClick={() => handleRemove(formData.id)}
-                        className="absolute top-[-12px] right-[-8px] rounded-full w-7 h-7 p-[0px] bg-black text-white text-[12px]"
-                    >
-                        X
-                    </button>
-                }
-
-                <textarea
-                    type="text"
-                    name={`subHeader_${formIndex}`}
-                    value={formData.subHeader}
-                    onChange={(e) => handleInputChange(formIndex, e)}
-                    placeholder="Enter sub header "
-                    className={`w-full p-3 border border-black rounded-sm focus:outline-none focus:ring-1 focus:ring-black focus:border-black`}
-                />
-                <textarea
-                    type="text"
-                    name={`para1_${formIndex}`}
-                    value={formData.para1}
-                    onChange={(e) => handleInputChange(formIndex, e)}
-                    placeholder="Enter description 1"
-                    className={`w-full p-3 border border-black rounded-sm focus:outline-none focus:ring-1 focus:ring-black focus:border-black`}
-                />
-                <textarea
-                    type="text"
-                    name={`para2_${formIndex}`}
-                    value={formData.para2}
-                    onChange={(e) => handleInputChange(formIndex, e)}
-                    placeholder="Enter description 2"
-                    className={`w-full p-3 border border-black rounded-sm focus:outline-none focus:ring-1 focus:ring-black focus:border-black`}
-                />
-                <textarea
-                    type="text"
-                    name={`para3_${formIndex}`}
-                    value={formData.para3}
-                    onChange={(e) => handleInputChange(formIndex, e)}
-                    placeholder="Enter description 3"
-                    className={`w-full p-3 border border-black rounded-sm focus:outline-none focus:ring-1 focus:ring-black focus:border-black`}
-                />
-            </div>
-        );
-    };
+  
     return (
         <Admin>
             <>
