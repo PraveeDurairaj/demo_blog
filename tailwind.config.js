@@ -13,7 +13,7 @@ module.exports = withMT({
   ],
   theme: {
     screens:{
-      sm:"375px",
+      sm:"320px",
       md:'768px',
       lg:"1200px"
     },

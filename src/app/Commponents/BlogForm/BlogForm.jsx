@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { Button } from '@material-tailwind/react';
+import { Button,Alert } from '@material-tailwind/react';
 // helper 
 import { useAddDos } from '@/hooks/useAddDos';
 
@@ -56,7 +56,7 @@ const Form = ({ formIndex, handleRemove, formData, handleInputChange }) => {
 };
 
 const BlogForm = () => {
-    const { addBlogData, error } = useAddDos('blogData');
+    const { addBlogData, addDocStatus } = useAddDos('blogData');
     const [forms, setForms] = useState([
         { id: Date.now(), subHeader: "", para1: "", para2: "", para3: "" },
     ]);
@@ -66,6 +66,8 @@ const BlogForm = () => {
         subtitle: '',
         readTime: '',
     });
+
+    const [noData, setNoData] = useState(false)
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -93,28 +95,51 @@ const BlogForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        addBlogData(
-            {
-                blogTitle: formData?.title,
-                blogSubTitle: formData?.subtitle,
-                blogId: formData?.readTime + 2,
-                blogReadTime: formData?.readTime,
-                blogContent:[  ...forms ]
-            }
-        )
+        if (formData?.title?.length >= 2 && formData?.subtitle?.length >= 2 && formData?.readTime >= 1) {
+            addBlogData(
+                {
+                    blogTitle: formData?.title,
+                    blogSubTitle: formData?.subtitle,
+                    blogId: formData?.readTime + 2,
+                    blogReadTime: formData?.readTime,
+                    blogContent: [...forms]
+                }
+            )
 
-        setFormData({
-            title: "",
-            subtitle: "",
-            readTime: "",
-        })
 
-        setForms([{ id: Date.now(), subHeader: "", para1: "", para2: "", para3: "" }])
+            setFormData({
+                title: "",
+                subtitle: "",
+                readTime: "",
+            })
 
-    };
+            setForms([{ id: Date.now(), subHeader: "", para1: "", para2: "", para3: "" }])
+            setNoData(false)
+
+        } else {
+            setNoData(true)
+            setTimeout(()=>{setNoData(false)},2000)
+           
+        }
+    }
+
+
 
     return (
         <>
+        
+            {
+                noData &&
+                <div className="absolute top-3 right-[10px] z-[120] max-w-[300px]">
+                    <Alert color="red">kindly write content properly </Alert>
+                </div>
+            }
+            {
+                addDocStatus &&
+                <div className="absolute top-3 right-[10px] z-[120] max-w-[300px]">
+                    <Alert color="green">Blog Added successfully</Alert>
+                </div>
+            }
             <h1 className='py-[10px] text-center font-[600] bg-white rounded-[10px] shadow-lg mb-[10px] sticky top-0 z-20  backdrop-blur-[100px] bg-opacity-[0.6] '>Create Blog</h1>
             <div className="w-full mx-auto  p-6 bg-white shadow-lg rounded-lg">
                 <form onSubmit={handleSubmit}>
@@ -134,6 +159,7 @@ const BlogForm = () => {
                             onChange={handleChange}
                             className={`w-full p-3 border border-black rounded-sm focus:outline-none focus:ring-1 focus:ring-black focus:border-black`}
                         />
+
                         <label
                             htmlFor='subTitle'
                             className="block  text-[18px] text-black mb-1"
@@ -195,11 +221,7 @@ const BlogForm = () => {
                         >
                             Submit
                         </button>
-                        {
-                            error && <p>check console</p>
-                        }
                     </div>
-
                 </form>
             </div>
         </>

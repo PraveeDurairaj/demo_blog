@@ -13,6 +13,7 @@ const page = () => {
     <Hero/>
     <div className='my-[50px]'></div>
      <Blog/>
+     <div className='my-[50px]'></div>
     </>
   
   )
