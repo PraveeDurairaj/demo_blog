@@ -18,7 +18,8 @@ const page = () => {
 
   return (
     <div>
-      <ViewBlog data={blog && blog}/>
+
+      <ViewBlog data={blog} id={id.view}/>
     </div>
   )
 }

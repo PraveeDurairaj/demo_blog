@@ -99,13 +99,13 @@ const page = () => {
                                         </td>
                                         <td className={`${classes} bg-blue-gray-50/50`}>
                                             <Typography as="a" href="#" variant="small" color="blue-gray" className="font-medium">
-                                                -
+                                                {data?.viewCount}
                                             </Typography>
                                         </td>
                                         <td className={`${classes} bg-blue-gray-50/50`}>
-                                            <Typography variant="small" color="red" className="font-medium cursor-pointer"
+                                            <Typography  color="red" className="cursor-pointer"
                                             >
-                                                <Button onClick={()=>handleOpen(data?.id)} variant="gradient" size="sm">
+                                                <Button onClick={()=>handleOpen(data?.id)} size="sm">
                                                     Delete
                                                 </Button>
                                             </Typography>

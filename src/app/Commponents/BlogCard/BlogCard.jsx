@@ -11,13 +11,13 @@ import {
 
 
 
-const BlogCard = ({ data}) => {
+const BlogCard = ({ data,className}) => {
 
   const createdata = data?.blogCreatedDate.toDate()
   const date = moment(createdata && createdata).format('YYYY-MM-DD');
   return (
     <>
-      <Card className={"w-full h-auto shadow-lg"}>
+      <Card className={`w-full h-auto shadow-lg ${className}`}>
         <CardBody className='p-4'>
           <Typography variant="h5" color="blue-gray" className="mb-2">
             {data?.blogTitle}

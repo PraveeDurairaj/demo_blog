@@ -21,8 +21,10 @@ module.exports = withMT({
       center: true,
       padding: {
         DEFAULT: '1rem',
-        sm: '2rem',
+        sm: '1rem',
+        md:'2rem'
       },
+    
     },
     extend: {
       colors:{

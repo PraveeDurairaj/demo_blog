@@ -3,6 +3,7 @@ import { Button, Alert } from '@material-tailwind/react';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation'
 import { useUpdateDoc } from '@/hooks/useUpdateDoc';
+import { serverTimestamp } from 'firebase/firestore';
 import React from 'react'
 import Admin from '@/app/admin/page';
 
@@ -99,6 +100,7 @@ const EditBlog = ({ blog, id }) => {
                 blogSubTitle: formData?.subtitle,
                 blogId: formData?.readTime + 2,
                 blogReadTime: formData?.readTime,
+                blogCreatedDate: serverTimestamp(),
                 blogContent:[  ...forms ]
             }
         )

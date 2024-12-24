@@ -1,9 +1,35 @@
+'use client';
 import React from 'react';
+import { useEffect } from 'react';
+import { useUpdateDoc } from '@/hooks/useUpdateDoc';
 
-const ViewBlog = ({ data }) => {
 
-  const full = [data?.blogContent[0], data?.blogContent[1],data?.blogContent[2],data?.blogContent[3],
-  data?.blogContent[4],data?.blogContent[5]]
+const ViewBlog = ({ data, id }) => {
+
+  const { updateBlogData} = useUpdateDoc('blogData');
+
+  setTimeout(() => {
+    if (data) {
+      if (data?.viewCount) {
+        updateBlogData(
+          id, {
+          viewCount: data?.viewCount + 1
+        }
+        )
+      }
+      else {
+        updateBlogData(
+          id, {
+          viewCount: 1
+        }
+        )
+      }
+    }
+  }, [3000])
+
+
+
+
 
   return (
     <>
@@ -21,7 +47,7 @@ const ViewBlog = ({ data }) => {
       </div>
       <div className='container sm:px-[20px] sm:py-[50px] md:px-[50px] md:pt-[30px] md:pb-[80px]'>
         {
-          full.map((content, index) => {
+          data?.blogContent.map((content, index) => {
             return (
               <div className='mb-5' key={index}>
                 <h2 className='text-[24px] mb-2'>{content?.subHeader}</h2>

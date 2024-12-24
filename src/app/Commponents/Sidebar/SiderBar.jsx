@@ -36,7 +36,7 @@ export function Sidebar() {
       <List className={show ? 'sm:flex flex-col' : 'sm:hidden md:flex'} >
         <Link href="/blogger">
           <ListItem className={`bg-white hover:bg-white 
-             text-black ${pathname == '/blogger' && 'bg-black text-white hover:bg-black hover:text-white focus:text-white focus:bg-black active:text-white active:bg-black'}`} >
+             text-black ${pathname == '/blogger' && 'bg-black shadow-xl text-white hover:bg-black hover:text-white focus:text-white focus:bg-black active:text-white active:bg-black'}`} >
             <ListItemPrefix>
               <UserCircleIcon className="h-5 w-5" />
             </ListItemPrefix>
@@ -45,7 +45,7 @@ export function Sidebar() {
         </Link>
         <Link href="/createBlog" >
           <ListItem className={`bg-white hover:bg-white 
-             text-black ${pathname == '/createBlog' && 'bg-black text-white hover:bg-black hover:text-white focus:text-white focus:bg-black active:text-white active:bg-black'}`}>
+             text-black ${pathname == '/createBlog' && 'bg-black shadow-xl text-white hover:bg-black hover:text-white focus:text-white focus:bg-black active:text-white active:bg-black'}`}>
             <ListItemPrefix>
               <InboxIcon className="h-5 w-5" />
             </ListItemPrefix>
