@@ -99,7 +99,7 @@ const page = () => {
                                         </td>
                                         <td className={`${classes} bg-blue-gray-50/50`}>
                                             <Typography as="a" href="#" variant="small" color="blue-gray" className="font-medium">
-                                                {data?.viewCount}
+                                                {data?.viewCount ? data?.viewCount : 0}
                                             </Typography>
                                         </td>
                                         <td className={`${classes} bg-blue-gray-50/50`}>
