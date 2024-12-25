@@ -110,14 +110,14 @@ const EditBlog = ({ blog, id }) => {
     return (
         <Admin>
             <>
-                <h1 className='py-[10px] text-center font-[600] bg-white rounded-[10px] shadow-lg mb-[10px] sticky top-0 z-20  backdrop-blur-[50px] bg-opacity-[0.4] '>Edit Blog</h1>
+            <h1 className='py-[10px] text-center font-[600] bg-white rounded-[10px] shadow-lg mb-[10px] sm:top-[10px] sticky md:top-0 z-20  backdrop-blur-[100px] bg-opacity-[0.6] '>Edit Blog</h1>
                 {
                     updateState &&
                     <div className="absolute top-3 right-[10px] z-[120] max-w-[300px]">
                         <Alert color="green">blog updated successfully</Alert>
                     </div>
                 }
-                <form onSubmit={handleSubmit} className='bg-white rounded-lg p-6' >
+                <form onSubmit={handleSubmit} className='bg-white rounded-lg p-6 sm:mt-[20px] md:mt-[0px]'>
                     <label htmlFor='title' className="block  text-[18px] text-black mb-1"
                     >Title
                         <span className="text-red-500">*</span>

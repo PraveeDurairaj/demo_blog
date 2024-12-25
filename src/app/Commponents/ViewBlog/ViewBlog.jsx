@@ -5,31 +5,13 @@ import { useUpdateDoc } from '@/hooks/useUpdateDoc';
 
 
 const ViewBlog = ({ data, id }) => {
-
   const { updateBlogData} = useUpdateDoc('blogData');
 
-  setTimeout(() => {
+  useEffect(()=>{
     if (data) {
-      if (data?.viewCount) {
-        updateBlogData(
-          id, {
-          viewCount: data?.viewCount + 1
-        }
-        )
-      }
-      else {
-        updateBlogData(
-          id, {
-          viewCount: 1
-        }
-        )
-      }
+      data?.viewCount ?  updateBlogData( id, { viewCount: data?.viewCount + 1}) :  updateBlogData( id, { viewCount: 1})
     }
-  }, [3000])
-
-
-
-
+  },[data])
 
   return (
     <>

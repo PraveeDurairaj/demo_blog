@@ -43,14 +43,14 @@ const page = () => {
     }
     return (
         <Admin>
-            <h1 className='py-[10px] text-center font-[600] bg-white rounded-[10px] shadow-lg mb-[10px] sticky top-0 z-20  backdrop-blur-[50px] bg-opacity-[0.4] '>Manage Blog</h1>
+            <h1 className='py-[10px] text-center font-[600] bg-white rounded-[10px] shadow-lg mb-[10px] sm:top-[10px] sticky md:top-0 z-20  backdrop-blur-[100px] bg-opacity-[0.6] '>Manage Blog</h1>
             {
                 deleteState &&
                 <div className="absolute top-3 right-[10px] z-[120] max-w-[300px]">
-                    <Alert color="red">blog deleted successfully</Alert>
+                    <Alert color="green">blog deleted successfully</Alert>
                 </div>
             }
-            <Card className="h-auto w-full rounded-t-[10px] overflow-x-auto">
+            <Card className="h-auto w-full sm:mt-[20px] md:mt-[0px] rounded-t-[10px] overflow-x-auto">
                 <table className="w-full min-w-[800px] table-auto text-center">
                     <thead>
                         <tr>

@@ -4,8 +4,6 @@ import { Button,Alert } from '@material-tailwind/react';
 // helper 
 import { useAddDos } from '@/hooks/useAddDos';
 
-
-
 const Form = ({ formIndex, handleRemove, formData, handleInputChange }) => {
     return (
         <div className="border  rounded-sm mb-5 border-black p-4   relative gap-5 sm:grid grid-cols-1">
@@ -140,8 +138,8 @@ const BlogForm = () => {
                     <Alert color="green">Blog Added successfully</Alert>
                 </div>
             }
-            <h1 className='py-[10px] text-center font-[600] bg-white rounded-[10px] shadow-lg mb-[10px] sticky top-0 z-20  backdrop-blur-[100px] bg-opacity-[0.6] '>Create Blog</h1>
-            <div className="w-full mx-auto  p-6 bg-white shadow-lg rounded-lg">
+            <h1 className='py-[10px] text-center font-[600] bg-white rounded-[10px] shadow-lg mb-[10px] sm:top-[10px] sticky md:top-0 z-20  backdrop-blur-[100px] bg-opacity-[0.6] '>Create Blog</h1>
+            <div className="w-full mx-auto  sm:mt-[20px] md:mt-[0px] p-6 bg-white shadow-lg rounded-lg">
                 <form onSubmit={handleSubmit}>
                     <div className='grid sm:grid-cols-1 gap-5'>
                         <label
