@@ -113,7 +113,7 @@ const EditBlog = ({ blog, id }) => {
             <h1 className='py-[10px] text-center font-[600] bg-white rounded-[10px] shadow-lg mb-[10px] sm:top-[10px] sticky md:top-0 z-20  backdrop-blur-[100px] bg-opacity-[0.6] '>Edit Blog</h1>
                 {
                     updateState &&
-                    <div className="absolute top-3 right-[10px] z-[120] max-w-[300px]">
+                    <div className="absolute top-[80px] right-[10px] z-[120] max-w-[300px]">
                         <Alert color="green">blog updated successfully</Alert>
                     </div>
                 }

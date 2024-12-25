@@ -128,13 +128,13 @@ const BlogForm = () => {
         
             {
                 noData &&
-                <div className="absolute top-3 right-[10px] z-[120] max-w-[300px]">
+                <div className="absolute top-[80px] right-[10px] z-[120] max-w-[300px]">
                     <Alert color="red">kindly write content properly </Alert>
                 </div>
             }
             {
                 addDocStatus &&
-                <div className="absolute top-3 right-[10px] z-[120] max-w-[300px]">
+                <div className="absolute top-[80px] right-[10px] z-[120] max-w-[300px]">
                     <Alert color="green">Blog Added successfully</Alert>
                 </div>
             }
