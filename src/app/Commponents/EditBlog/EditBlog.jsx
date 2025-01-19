@@ -2,7 +2,7 @@
 import { Button, Alert } from '@material-tailwind/react';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation'
-import { useUpdateDoc } from '@/hooks/useUpdateDoc';
+import { useUpdateDocs } from '@/hooks/useFirebaseCURD';
 import { serverTimestamp } from 'firebase/firestore';
 import React from 'react'
 import Admin from '@/app/admin/page';
@@ -58,7 +58,7 @@ const Form = ({ formIndex, handleRemove, formData, handleInputChange }) => {
 
 const EditBlog = ({ blog, id }) => {
     const router = useRouter();
-    const { updateBlogData, updateState } = useUpdateDoc('blogData');
+    const { updateBlogData, updateState } = useUpdateDocs('blogData');
     const [formData, setFormData] = useState({
         title: blog?.blogTitle,
         subtitle: blog?.blogSubTitle,

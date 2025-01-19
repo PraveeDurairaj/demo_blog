@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { Button,Alert } from '@material-tailwind/react';
 // helper 
-import { useAddDos } from '@/hooks/useAddDos';
+import { useAddDos } from '@/hooks/useFirebaseCURD';
 
 const Form = ({ formIndex, handleRemove, formData, handleInputChange }) => {
     return (

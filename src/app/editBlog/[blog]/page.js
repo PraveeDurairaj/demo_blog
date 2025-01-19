@@ -2,32 +2,26 @@
 import React, { useEffect } from 'react';
 import { useParams } from "next/navigation";
 // components
-
-// hook
-import { useFetchDocs } from '@/hooks/useFetchDocs';
 import EditBlog from '@/app/Commponents/EditBlog/EditBlog';
-
-
+// hook
+import { useGetDocs } from '@/hooks/useFirebaseCURD';
 
 const page = () => {
+  
   const params = useParams(); 
   const id = params;
-
-  const {getBlogData,blog} = useFetchDocs('blogData')
+  const {getBlogData,blog} = useGetDocs('blogData')
 
   useEffect(()=>{
     getBlogData(id.blog)
   },[])
 
-
-
   return (
-    <div>
+    <>
       {
         blog && <EditBlog blog={blog} id={id.blog}/>
       }
-      
-    </div>
+    </>
   )
 }
 

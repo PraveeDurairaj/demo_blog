@@ -1,7 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
 import hero from '../../../../public/hero.webp';
-import { Button } from '@material-tailwind/react';
 
 const Hero = () => {
     return (
@@ -14,7 +13,6 @@ const Hero = () => {
                 <p className="text-[18px] mb-6 max-w-[800px]">
                     Discover articles that spark your curiosity, expand your knowledge, and keep you inspired. Whether you're interested in [your niche, e.g., lifestyle, tech, travel], we've got something for everyone!
                 </p>
-                {/* <Button className="rounded-full border border-white bg-transparent shadow-xl">Explore our blog</Button> */}
                 <Image src={hero} className=' sm:hidden md:hidden lg:block heroImg absolute ' alt='img'></Image>
             </div>
             <div className='sm:hidden md:hidden lg:block p-5 rounded-xl text-[16px] absolute max-w-[300px] right-[20px] top-[50px] bg-white bg-opacity-[0.1] transition-all shadow-xl

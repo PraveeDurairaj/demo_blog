@@ -1,29 +1,20 @@
 'use client';
 import React from "react";
 import { useState } from "react";
-import {
-    Button,
-    Dialog,
-    DialogHeader,
-    DialogBody,
-    DialogFooter,
-    IconButton,
-    Typography,
-    Card,
-    Alert
-} from "@material-tailwind/react";
-import { XMarkIcon } from "@heroicons/react/24/outline";
-import moment from 'moment';
-import { useFetchCollection } from '@/hooks/useFetchCollection';
-import { useDeleteDos } from '@/hooks/useDeleteDos';
-import Admin from '../admin/page';
 import Link from 'next/link';
-
+import moment from 'moment';
+import { Button, Dialog, DialogHeader, DialogBody, DialogFooter, IconButton, Typography, Card, Alert } from "@material-tailwind/react";
+import { XMarkIcon } from "@heroicons/react/24/outline";
+// helper
+import { useFetchCollection } from '@/hooks/useFetchCollection';
+import { useDeleteDocs } from "@/hooks/useFirebaseCURD";
+// components
+import Admin from '../admin/page';
 
 const page = () => {
 
     const blogdata = useFetchCollection('blogData');
-    const { deleteBlogData, deleteState } = useDeleteDos('blogData');
+    const { deleteBlogData, deleteState } = useDeleteDocs('blogData');
     const [open, setOpen] = useState(false);
     const [deleteId, setDeleteId] = useState(null)
     const TABLE_HEAD = ["No", "Id", "Created date", "Blog title", "View count", "Action", "Update", 'Preview'];
@@ -31,15 +22,13 @@ const page = () => {
     const handleOpen = (id) => {
         setOpen(!open)
         setDeleteId(id)
-        console.log(id,'dd')
     }
     const deleteBlog = () => {
-        console.log(deleteId)
-        if(deleteId){
+        if (deleteId) {
             deleteBlogData(deleteId && deleteId)
             setOpen(!open)
         }
-       
+
     }
     return (
         <Admin>
@@ -103,9 +92,9 @@ const page = () => {
                                             </Typography>
                                         </td>
                                         <td className={`${classes} bg-blue-gray-50/50`}>
-                                            <Typography  color="red" className="cursor-pointer"
+                                            <Typography color="red" className="cursor-pointer"
                                             >
-                                                <Button onClick={()=>handleOpen(data?.id)} size="sm">
+                                                <Button onClick={() => handleOpen(data?.id)} size="sm">
                                                     Delete
                                                 </Button>
                                             </Typography>

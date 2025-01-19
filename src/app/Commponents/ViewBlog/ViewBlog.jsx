@@ -1,12 +1,13 @@
 'use client';
 import React from 'react';
 import { useEffect } from 'react';
-import { useUpdateDoc } from '@/hooks/useUpdateDoc';
+// helper
+import { useUpdateDocs } from '@/hooks/useFirebaseCURD';
 
 
 const ViewBlog = ({ data, id }) => {
-  const { updateBlogData} = useUpdateDoc('blogData');
 
+  const { updateBlogData} = useUpdateDocs('blogData');
   useEffect(()=>{
     if (data) {
       data?.viewCount ?  updateBlogData( id, { viewCount: data?.viewCount + 1}) :  updateBlogData( id, { viewCount: 1})
