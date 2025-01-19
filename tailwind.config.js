@@ -32,7 +32,11 @@ module.exports = withMT({
       },
       backgroundSize:{
         "full":'100% 100%'
+      },
+      objectPosition:{
+        '0--1':'0px -1px',
       }
+      
     },
   },
   plugins: [],

@@ -7,19 +7,21 @@
   --foreground: #171717;
 }
 
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-} */
+.gradient-border{
+  position: relative;
+  z-index: 0;
+}
+.gradient-border::before{
+  content: '';
+  width: 100%;
+  height: 8px;
+  position: absolute;
+  inset: 0;
+  border-radius: 10px 10px 0px 0px;
+  background-image: linear-gradient(160deg, #d5dede 0%, #47def1 100%);
 
-/* @font-face {
-  font-family: 'Roboto';
-  src: url('../fonts/Roboto-Regular.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-} */
+
+}
 
 body {
   color: var(--foreground);
