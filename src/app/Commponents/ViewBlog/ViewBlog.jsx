@@ -1,47 +1,50 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import { useEffect } from 'react';
 // helper
 import { useUpdateDocs } from '@/hooks/useFirebaseCURD';
+import Footer from '../Footer/Footer';
 
 
 const ViewBlog = ({ data, id }) => {
-
+const [loading ,setLoading] = useState(true)
   const { updateBlogData} = useUpdateDocs('blogData');
   useEffect(()=>{
     if (data) {
+      setLoading(false)
       data?.viewCount ?  updateBlogData( id, { viewCount: data?.viewCount + 1}) :  updateBlogData( id, { viewCount: 1})
     }
   },[data])
 
   return (
     <>
-      <div className='bg-black flex sm:px-[20px] sm:py-[50px] md:px-[50px] md:py-[80px]'>
+      <div className=' bg-block bg-gradient-to-r from-purple-500 to-purple-900'>
         {
-          data ? <div className="container relative before:content-[''] before:absolute
-          before:w-[5px] before:h-full before:bg-[#FF0000] before:rounded-[20px] before:left-[0]">
-            <h1 className='text-[30px] text-white mb-3'>{data?.blogTitle}</h1>
-            <p className='text-[18px] text-gray-500'>{data?.blogSubTitle}</p>
-          </div> : <div className='w-full'>
+          !loading ? <div className="container py-[15px] md:py-[30px] lg:py-[80px]">
+            <h1 className='text-[30px] text-white  mb-3 font-[500]'>{data?.blogTitle}</h1>
+            <p className='text-[16px] text-white'>{data?.blogSubTitle}</p>
+          </div> : <div className='container py-[15px] md:py-[30px] lg:py-[50px]'>
             <div className='min-h-[35px] w-full animate-pulse bg-gray-300 rounded-full mb-3' ></div>
             <p className='min-h-[20px] w-2/3 animate-pulse bg-gray-300 rounded-full'></p>
           </div>
         }
       </div>
-      <div className='container sm:px-[20px] sm:py-[50px] md:px-[50px] md:pt-[30px] md:pb-[80px]'>
-        {
-          data?.blogContent.map((content, index) => {
+      <div className='container my-[20px] md:my-[50px]'>
+        
+     {!loading ? (data?.blogContent.map((content, index) => {
             return (
               <div className='mb-5' key={index}>
-                <h2 className='text-[24px] mb-2'>{content?.subHeader}</h2>
-                {content?.para1 && <p className='text-[16px] mb-1'>{content?.para1}</p>}
-                {content?.para2 && <p className='text-[16px] mb-1'>{content?.para2}</p>}
-                {content?.para3 && <p className='text-[16px] mb-1'>{content?.para3}</p>}
+                <h3 className=' text-[20px] md:text-[24px] mb-[12px] font-[500]'>{content?.subHeader}</h3>
+                {content?.para1 && <p className=' text-[14px] md:text-[16px] mb-[6px]'>{content?.para1}</p>}
+                {content?.para2 && <p className=' text-[14px] md:text-[16px] mb-[6px]'>{content?.para2}</p>}
+                {content?.para3 && <p className=' text-[14px] md:text-[16px] mb-[6px]'>{content?.para3}</p>}
               </div>
             )
-          })
-        }
+          })):<div className='h-[500px] w-full animate-pulse bg-gray-300 rounded-[10px]'></div>
+          }
+        
       </div>
+      <Footer/>
     </>
 
   )

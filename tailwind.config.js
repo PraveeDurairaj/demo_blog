@@ -13,7 +13,7 @@ module.exports = withMT({
   ],
   theme: {
     screens:{
-      sm:"320px",
+      sm:"100%",
       md:'768px',
       lg:"1200px"
     },
@@ -23,7 +23,7 @@ module.exports = withMT({
         DEFAULT: '1rem',
         sm: '1rem',
         md:'2rem'
-      },
+      }
     
     },
     extend: {
