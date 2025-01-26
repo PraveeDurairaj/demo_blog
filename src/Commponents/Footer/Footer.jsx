@@ -1,8 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
-import instaIcon from '../../../../public/instagram.png';
-import linkedinIcon from '../../../../public/linkedin.png';
-import emailIcon from '../../../../public/gmail.png';
+import instaIcon from '../../../public/instagram.png';
+import linkedinIcon from '../../../public/linkedin.png';
+import emailIcon from '../../../public/gmail.png';
 const footerData = [
     {
         id: 1,
@@ -54,7 +54,7 @@ const footerData = [
 const Footer = () => {
     return (
         <div className='bg-black'>
-         <div className='flex justify-between sm:py-[20px] sm:!px-[30px] gap-3 sm:flex-col md:flex-row  container text-white md:py-[50px]' id='footer'  >
+         <div className='container flex justify-between  gap-3 flex-col md:flex-row  text-white py-[50px]' id='footer'  >
             {
                 footerData?.map((data) => {
                     return (

@@ -1,14 +1,12 @@
 'use client'
 import React from 'react';
-import Blog from './Commponents/Blog/Blog';
-import Hero from './Commponents/Hero/Hero';
-import Footer from './Commponents/Footer/Footer';
-
+import Blog from '@/Commponents/Blog/Blog';
+import Hero from '@/Commponents/Hero/Hero';
+import Footer from '@/Commponents/Footer/Footer';
 
 
 const page = () => {
 
-  
   return (
     <>
     <Hero/>
@@ -17,7 +15,6 @@ const page = () => {
      <div className='my-[50px]'></div>
      <Footer/>
     </>
-  
   )
 }
 

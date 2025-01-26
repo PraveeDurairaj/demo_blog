@@ -10,7 +10,7 @@ const Blog = () => {
   return (
     <>
       {blogdata ?
-        <div className='container grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+        <div className='container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
           {
             blogdata?.map((cardData, index) => {
               return (
@@ -22,7 +22,7 @@ const Blog = () => {
           }
         </div>
         :
-        <div className='container grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-[50px]'>
+        <div className='container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-[50px]'>
           {[1, 2, 3].map((data) => {
             return (
               <div className='min-h-[250px] border bg-gray-50 p-4 rounded-[10px]' key={data}>

@@ -1,6 +1,6 @@
 import React from 'react'
 import Admin from '../admin/page'
-import BlogForm from '@/app/Commponents/BlogForm/BlogForm'
+import BlogForm from '@/Commponents/BlogForm/BlogForm'
 const page = () => {
   return (
     <Admin>

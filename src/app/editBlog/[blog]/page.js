@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import { useParams } from "next/navigation";
 // components
-import EditBlog from '@/app/Commponents/EditBlog/EditBlog';
+import EditBlog from '@/Commponents/EditBlog/EditBlog';
 // hook
 import { useGetDocs } from '@/hooks/useFirebaseCURD';
 

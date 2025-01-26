@@ -30,13 +30,13 @@ const Page = () => {
     }
 
     return (
-        <div className="grid md:h-[600px] sm:grid-cols-1 md:grid-cols-2 sm:gap-3 md:gap-5 p-3 ">
-            <Image src={loginImg} className="w-full h-full border rounded-[10px] object-cover sm:hidden md:block" alt="login" />
+        <div className="grid md:h-[600px] grid-cols-1 md:grid-cols-2 gap-3 md:gap-5 p-3 ">
+            <Image src={loginImg} className="w-full h-full border rounded-[10px] object-cover hidden md:block" alt="login" />
             <div className="h-full w-full bg-white p-3 border  gradient-border  rounded-[10px] shadow-lg  ">
                 <div className="py-[60px]">
                     <Image src={profile} className="w-[100px] h-[100px] object-0--1  mx-auto mb-[20px] rounded-[100px] border  object-cover" alt="profile" />
 
-                    <h1 className="text-center sm:text-[20px] md:text-[28px] mb-[20px]">Login</h1>
+                    <h1 className="text-center text-[20px] md:text-[28px] mb-[20px]">Login</h1>
                     <form className="max-w-[420px] m-auto">
                         <input
                             id="email"
